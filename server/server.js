@@ -4,7 +4,7 @@ const request = require('request');
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-
+const { getJson } = require("serpapi");
 const SpotifyWebApi = require("spotify-web-api-node")
 
 const app = express()
@@ -12,6 +12,19 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+app.post("/artistPhotos",(req,res)=>{
+  const artist = req.body.artist;
+  getJson({
+    engine: "google_images",
+    api_key: "6fcf774a65e7279269630bb11973ae57d365bddbae1aa83b20e804694d8152a2", // Get your API_KEY from https://serpapi.com/manage-api-key
+    q:artist,
+    location: "Austin, Texas",
+  }, (json) => {
+    res.send(json);
+  });
+  
+})
 
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken
@@ -74,7 +87,7 @@ app.post('/lyrics', (req, res) => {
   }
   getSong(options)
     .then((lyrics) => {
-      console.log(lyrics);
+    
       res.json({ lyrics });
     })
     .catch((err) => {
