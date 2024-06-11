@@ -1,15 +1,72 @@
-import React from 'react';
+import React,{ useState }  from 'react';
 import PixiMusicGame from './MiniGameComponent.jsx';
+import PixiMusicComponent from './PixiMusicComponent.jsx';
 
 const MiniGamePage = () => {
+  const [showPixiComponent, setShowPixiComponent] = useState(true);
+
+  const handlePixiComponentMount = () => {
+    setShowPixiComponent(false); // Set to false when Pixi component is mounted
+  };
+  React.useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto'; // Reset overflow when component unmounts
+    };
+  }, []);
   return (
-    <div style={{ textAlign: 'center', color: 'white', paddingTop: '50px' }}>
-      <h1>Welcome to the Music Mini-Game</h1>
-      <p>Click or draw on the canvas to play music notes!</p>
-      <p>Login with Spotify to access more features.</p>
-      <PixiMusicGame /> {/* Render the Pixi music game */}
+    <>
+    <PixiMusicComponent onMount={handlePixiComponentMount} shouldRender={showPixiComponent} />
+    <div style={styles.container}>
+      <div style={styles.header}>
+        <h1 style={styles.title}>Welcome to the Music Mini-Game</h1>
+        <p style={styles.subtitle}>Click or draw on the canvas to play music notes!</p>
+        <p style={styles.subtitle}>Login with Spotify to access more features.</p>
+      </div>
+        
+      <div style={styles.gameContainer}>
+        <PixiMusicGame onMount={handlePixiComponentMount} shouldRender={showPixiComponent}/>
+      </div>
     </div>
+    </>
   );
+};
+
+const styles = {
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    color: '#ffffff',
+  },
+  
+  header: {
+    textAlign: 'center',
+    marginBottom: '30px',
+  },
+  title: {
+    fontSize: '2rem',
+    marginBottom: '10px',
+  },
+  subtitle: {
+    fontSize: '1rem',
+    marginBottom: '10px',
+  },
+  gameContainer: {
+    width: 'auto',
+    maxWidth: 'auto',
+    height: 'auto',
+    backgroundColor: '#333333',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
+    overflow: 'hidden',
+  },
 };
 
 export default MiniGamePage;
