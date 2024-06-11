@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PixiMusicComponent from './PixiMusicComponent.jsx';
 
-const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=0279f1ff50264cd6a94b5b3de26c30af&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state";
+const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=a76ea47fed02462c81306ccebe692c19&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state";
 
 export default function Login() {
   const [showPixiComponent, setShowPixiComponent] = useState(true);

@@ -5,15 +5,15 @@ import musicImage2 from './images/music2.png';
 import musicImage3 from './images/music3.png';
 const PixiMusicComponent = ({ shouldRender }) => {
   const pixiContainerRef = useRef(null);
-  debugger;
+
   useEffect(() => {
     if (shouldRender){
       shouldRender=false;
     const app = new PIXI.Application();
     app.init({
       width: window.innerWidth,
-      height: window.innerHeight,
-      backgroundColor: 0x1099bb,
+      height: window.innerHeight ,
+      backgroundColor: 0xD3C2BF,
     }).then(() => {
 
 

@@ -8,6 +8,7 @@ import Player from './Player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown,faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { Canvas } from 'react-three-fiber';
+import PixiMusicComponent from './PixiMusicComponent.jsx';
 
 import { useLoader,useFrame } from 'react-three-fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
@@ -59,8 +60,18 @@ const ModelWithTextures = ({ modelPath, numTextures,objRef }) => {
 };
 
 export default function Dashboard({accessToken}) {
- 
-    
+  const [showPixiComponent, setShowPixiComponent] = useState(true);
+
+  const handlePixiComponentMount = () => {
+    setShowPixiComponent(false); // Set to false when Pixi component is mounted
+  };
+  
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
   
   const objRef = useRef();
   const [search, setSearch] = useState("")
@@ -69,8 +80,8 @@ export default function Dashboard({accessToken}) {
   const [playingTrack, setPlayingTrack] = useState()
   const [lyrics, setLyrics] = useState("")
   const [spotifyApi, setSpotifyApi] = useState(new SpotifyWebApi({
-    clientId: "0279f1ff50264cd6a94b5b3de26c30af",
-    clientSecret: "8c810e9d78d24b5795ee250f214c75d0"
+    clientId: "a76ea47fed02462c81306ccebe692c19",
+    clientSecret: "c2e902ab31024e91a061d4436933f67e"
   }));
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
@@ -221,9 +232,21 @@ export default function Dashboard({accessToken}) {
   const rotationSpeed = 0.01;
  
   return (
-    
-    <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
-
+    <>
+    <div style={{ 
+  position: 'absolute', 
+  top: 0, 
+  left: 0, 
+  width: '100vw', 
+  height: '100vh', 
+  overflow: 'hidden', 
+  display: 'flex', 
+  justifyContent: 'center', 
+  alignItems: 'center' 
+}}>
+  <PixiMusicComponent onMount={handlePixiComponentMount} shouldRender={showPixiComponent} />
+  <Container className="d-flex flex-column py-2" style={{ height: '100vh', width: '80%' }}>
+      
       <Form.Control
         type="search"
         placeholder="Search Songs/Artists"
@@ -240,6 +263,7 @@ export default function Dashboard({accessToken}) {
         ))}
         {searchResults.length === 0 && (
           <div className="text-center" style={{ whiteSpace: "pre" }}>
+            
                   {playingTrack && (
          <div className="slider-container">
          <div className="left-slide" >
@@ -294,7 +318,12 @@ export default function Dashboard({accessToken}) {
       )}
       
 
-            {lyrics}
+      <div className='lyrics'>
+      
+         {lyrics}
+      </div>
+           
+            
           </div>
         )}
       </div>
@@ -302,5 +331,7 @@ export default function Dashboard({accessToken}) {
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
     </Container>
+    </div>
+    </>
   )
 }
