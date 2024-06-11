@@ -14,6 +14,7 @@ import { useLoader,useFrame } from 'react-three-fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import Navbar from './NavBar.jsx';
 
 
 const ModelWithTextures = ({ modelPath, numTextures,objRef }) => {
@@ -233,10 +234,11 @@ export default function Dashboard({accessToken}) {
  
   return (
     <>
+    <Navbar/>
     <div style={{ 
   position: 'absolute', 
-  top: 0, 
-  left: 0, 
+  top: 40, 
+  left: 0,
   width: '100vw', 
   height: '100vh', 
   overflow: 'hidden', 
@@ -244,8 +246,10 @@ export default function Dashboard({accessToken}) {
   justifyContent: 'center', 
   alignItems: 'center' 
 }}>
+  
   <PixiMusicComponent onMount={handlePixiComponentMount} shouldRender={showPixiComponent} />
-  <Container className="d-flex flex-column py-2" style={{ height: '100vh', width: '80%' }}>
+  
+  <Container className="d-flex flex-column py-2" style={{ height: '95vh', width: '80%', marginTop: '-40px'}}>
       
       <Form.Control
         type="search"

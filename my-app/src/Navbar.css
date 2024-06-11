@@ -1,0 +1,29 @@
+.navbar {
+    background-color: #3333335e;
+    padding: 10px 0;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block; /* Make the list inline-block */
+  }
+  
+  
+  .navbar-item {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .navbar-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .navbar-link:hover {
+    color: #000000;
+  }

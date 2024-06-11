@@ -30,7 +30,7 @@ const PixiMusicGame = ({shouldRender}) => {
     app.init({
       width: window.innerWidth / 2,
       height: window.innerHeight /2 ,
-      backgroundColor: 0x1099bb,
+      backgroundColor: 0xBFD0D3,
       sharedLoader: true,
     }).then(() => {
       pixiContainerRef.current.appendChild(app.canvas);
@@ -88,18 +88,24 @@ const PixiMusicGame = ({shouldRender}) => {
       // Function to calculate note based on position
       const calculateNote = (position) => {
         const canvasWidth = window.innerWidth / 2;
-        const canvasHeight = window.innerHeight / 2;
+        const canvasHeight = window.innerHeight / 2 ;
         const xRatio = position.x / canvasWidth;
         const yRatio = position.y / canvasHeight;
-        const column = Math.floor(xRatio * 3); // Divide canvas into 3 columns
-        const row = Math.floor(yRatio * 4); // Divide canvas into 4 rows
-        const noteIndex = column + row * 3; // Combine row and column to get note index (0-11)
-        
+        const column = Math.floor(xRatio * 6); // Divide canvas into 6 columns (double the columns)
+        const row = Math.floor(yRatio * 4); // Divide canvas into 8 rows (double the rows)
+        const noteIndex = column + row * 6; // Combine row and column to get note index (0-47)
+    
         // Define notes corresponding to each index
-        const notes = [note1, note2, note3, note4, note5, note6, note7, note8, note9, note10, note11, note12];
-
+        const notes = [
+            note7, note2, note3, note4, note5, note6, 
+            note10, note2, note3, note4, note5, note6, 
+            note7, note8, note9, note10, note11, note12, 
+            note7, note8, note9, note10, note11, note12,
+            // Duplicate the notes to make the grid denser
+        ];
+    
         return notes[noteIndex];
-      };
+    };
 
       // Function to handle mouse down event
       const handleMouseDown = (event) => {
