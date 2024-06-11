@@ -1,4 +1,4 @@
-import React, { useRef, useEffect,useState } from 'react';
+import React, { useRef, useMemo,useState } from 'react';
 import * as PIXI from 'pixi.js';
 import musicImage from './images/music.png'; // Adjust the path to your image
 import musicImage2 from './images/music2.png';
@@ -6,7 +6,7 @@ import musicImage3 from './images/music3.png';
 const PixiMusicComponent = ({ shouldRender }) => {
   const pixiContainerRef = useRef(null);
 
-  useEffect(() => {
+  useMemo(() => {
     if (shouldRender){
       shouldRender=false;
     const app = new PIXI.Application();

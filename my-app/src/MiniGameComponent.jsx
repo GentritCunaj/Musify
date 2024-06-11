@@ -30,7 +30,7 @@ const PixiMusicGame = ({shouldRender}) => {
     app.init({
       width: window.innerWidth / 2,
       height: window.innerHeight /2 ,
-      backgroundColor: 0x1099bb,
+      backgroundColor: 0xBFD0D3,
       sharedLoader: true,
     }).then(() => {
       pixiContainerRef.current.appendChild(app.canvas);

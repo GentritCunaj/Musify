@@ -1,6 +1,7 @@
 import React,{ useState }  from 'react';
 import PixiMusicGame from './MiniGameComponent.jsx';
 import PixiMusicComponent from './PixiMusicComponent.jsx';
+import Navbar from './NavBar.jsx';
 
 const MiniGamePage = () => {
   const [showPixiComponent, setShowPixiComponent] = useState(true);
@@ -17,6 +18,7 @@ const MiniGamePage = () => {
   return (
     <>
     <PixiMusicComponent onMount={handlePixiComponentMount} shouldRender={showPixiComponent} />
+    <Navbar/>
     <div style={styles.container}>
       <div style={styles.header}>
         <h1 style={styles.title}>Welcome to the Music Mini-Game</h1>
@@ -35,14 +37,14 @@ const MiniGamePage = () => {
 const styles = {
   container: {
     position: 'absolute',
-    top: 0,
+    top: 40,
     left: 0,
     right: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '90vh',
     color: '#ffffff',
   },
   
@@ -62,7 +64,7 @@ const styles = {
     width: 'auto',
     maxWidth: 'auto',
     height: 'auto',
-    backgroundColor: '#333333',
+    backgroundColor: '#BFD0D3',
     borderRadius: '10px',
     boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
     overflow: 'hidden',
