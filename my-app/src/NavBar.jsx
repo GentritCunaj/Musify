@@ -6,6 +6,9 @@ const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=a76ea47fed024
 const Navbar = () => {
   return (
     <nav className="navbar">
+      <div className="navbar-left">
+        <div className="navbar-logo">Musify</div>
+      </div>
       <ul className="navbar-list">
         <li className="navbar-item">
           <a href={AUTH_URL} className="navbar-link">Home</a>
@@ -17,6 +20,7 @@ const Navbar = () => {
           <a href="/Game" className="navbar-link">Game</a>
         </li>
       </ul>
+      <div className="navbar-right"></div> {/* Empty div for spacing */}
     </nav>
   );
 };
