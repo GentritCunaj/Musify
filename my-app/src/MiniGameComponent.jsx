@@ -88,23 +88,28 @@ const PixiMusicGame = ({shouldRender}) => {
       // Function to calculate note based on position
       const calculateNote = (position) => {
         const canvasWidth = window.innerWidth / 2;
-        const canvasHeight = window.innerHeight / 2 ;
+        const canvasHeight = window.innerHeight / 2;
         const xRatio = position.x / canvasWidth;
         const yRatio = position.y / canvasHeight;
-        const column = Math.floor(xRatio * 6); // Divide canvas into 6 columns (double the columns)
-        const row = Math.floor(yRatio * 4); // Divide canvas into 8 rows (double the rows)
-        const noteIndex = column + row * 6; // Combine row and column to get note index (0-47)
+        const column = Math.floor(xRatio * 6); 
+        const row = Math.floor(yRatio * 6); 
+        const noteIndex = column + row * 6; 
     
         // Define notes corresponding to each index
         const notes = [
-            note7, note2, note3, note4, note5, note6, 
-            note10, note2, note3, note4, note5, note6, 
-            note7, note8, note9, note10, note11, note12, 
+            note7, note2, note3, note4, note5, note6,
             note7, note8, note9, note10, note11, note12,
             // Duplicate the notes to make the grid denser
+            note10, note2, note3, note4, note5, note6,
+            note7, note8, note9, note10, note11, note12,
+            note12, note2, note3, note4, note5, note6,
+            note7, note8, note9, note10, note11, note12,
         ];
     
-        return notes[noteIndex];
+        // Ensure that noteIndex is within the bounds of the notes array
+        const adjustedIndex = noteIndex % notes.length;
+    
+        return notes[adjustedIndex];
     };
 
       // Function to handle mouse down event

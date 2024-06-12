@@ -234,6 +234,7 @@ export default function Dashboard({accessToken}) {
  
   return (
     <>
+    
     <Navbar/>
     <div style={{ 
   position: 'absolute', 
@@ -249,15 +250,32 @@ export default function Dashboard({accessToken}) {
   
   <PixiMusicComponent onMount={handlePixiComponentMount} shouldRender={showPixiComponent} />
   
-  <Container className="d-flex flex-column py-2" style={{ height: '95vh', width: '80%', marginTop: '-40px'}}>
-      
+  <Container className="d-flex flex-column py-2" style={{ height: '95vh', width: '80%', marginTop: '-30px'}}>
+  <style>
+        {`
+          .search-input {
+            background-color: rgb(51, 51, 51);
+            border: 2px solid rgb(40, 40, 40);
+            color: white; /* Text color */
+            border-radius: 5px; /* Rounded edges */
+          }
+          .search-input::placeholder {
+            color: white; /* Placeholder text color */
+          }
+          .search-input:focus {
+            color: white; /* Text color when input is focused */
+          }
+        `}
+      </style>
       <Form.Control
         type="search"
         placeholder="Search Songs/Artists"
+        className="search-input"
+        style={{backgroundColor:"rgb(51, 51, 51)",border: "2px solid rgb(40, 40, 40)" }}
         value={search}
         onChange={e => setSearch(e.target.value)}
       />
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+<div className="flex-grow-1 my-2" style={{ overflowY: "auto", scrollbarColor: "#555 #222" }}>
         {searchResults.map(track => (
           <TrackSearchResult
             track={track}
@@ -271,9 +289,9 @@ export default function Dashboard({accessToken}) {
                   {playingTrack && (
          <div className="slider-container">
          <div className="left-slide" >
-           <div style={{ backgroundColor: slideContent[activeSlideIndex].backgroundColor }}>
+           <div style={{ backgroundColor: slideContent[activeSlideIndex].backgroundColor  }}>
            <Canvas
-      style={{ width: '40vh', height: '80vh' }}
+      style={{ width: '40vh', height: '80vh'}}
       camera={{ position: [0, 0, 5], fov: 60 }}
       onCreated={({ gl, camera }) => {
         const controls = new OrbitControls(camera, gl.domElement);

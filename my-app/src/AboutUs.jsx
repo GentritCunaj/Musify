@@ -43,7 +43,7 @@ const AboutUsPage = () => {
 const styles = {
   container: {
     position: 'absolute',
-    top: 40,
+    top: 70,
     left: 0,
     right: 0,
     display: 'flex',
@@ -56,7 +56,7 @@ const styles = {
   },
   container2: {
     position: 'relative',
-    top: 0,
+    top: -80,
     left: 0,
     right: 0,
     display: 'flex',
@@ -73,11 +73,11 @@ const styles = {
     textAlign: 'center',
   },
   title: {
-    fontSize: '3rem', // Increased font size
+    fontSize: '4rem', // Increased font size
     marginBottom: '20px',
   },
   text: {
-    fontSize: '1.6rem', // Increased font size
+    fontSize: '2rem', // Increased font size
     marginBottom: '15px',
   },
 };
